@@ -74,6 +74,3 @@ $ ./trivial_sim
 [DUBUG]: [ PC: 0012 R[0-7]:{ 37h 00h 01h 00h 00h 00h 00h 00h } B1: FFh B2: FFh ] -> Case EOF
 [INFO]: Memory Dump Saved
 ```
-
-![Binary_Compilation_Inputs]("./Screen-Shot/Binary_Compilation_Inputs.jpg")
-![Binary_Compilation_Inputs]("./Screen-Shot/Simulation_Output.jpg")
