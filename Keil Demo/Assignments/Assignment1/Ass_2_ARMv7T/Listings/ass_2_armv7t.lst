@@ -1,0 +1,156 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Controller: STM32F407IGX 
+    2 00000000         ; Architecture: ARMv7T
+    3 00000000         ; Q.2. Write an assembly language program (ALP) in Keil 
+                       uV5 for 
+    4 00000000         ; STM-32 to find the largest integer from a collection 
+    5 00000000         ; of 10 signed integers stored in consecutive memory 
+    6 00000000         ; locations in ROM and store the result in RAM.
+    7 00000000         ; Also take a suitable snapshot of the KEIL IDE 
+    8 00000000         ; in the debug mode to demonstrate the desired output 
+    9 00000000         ;(Register window, Memory window for RAM/ROM). 
+   10 00000000         ; Ensure that the screenshot captures system time & day.
+                        
+   11 00000000         ; Comment your code.
+   12 00000000         
+   13 00000000                 AREA             RESET, CODE, READONLY
+   14 00000000                 THUMB                        ; Code with THUMB 2
+                                                             mode
+   15 00000000 20000100 
+              80000009 IN      DCD              0x20000100, 0x80000009 ; SP_sta
+                                                            rt : 0x20000000 Off
+                                                            set: 0x100, RESET V
+                                                            ector start at 0x80
+                                                            000009
+   16 00000008                 ENTRY
+   17 00000008 4C10            LDR              R4, =SRC    ; Load Source Addre
+                                                            ss in R4
+   18 0000000A 4D11            LDR              R5, =DST    ; Load Dest Address
+                                                             in R5
+   19 0000000C         CMPL
+   20 0000000C F854 0B04       LDR              R0,[R4],#4  ; Load value at add
+                                                            ress present in R4.
+                                                             Post increment R4 
+                                                            by 4
+   21 00000010 4288            CMP              R0,R1       ; Compare the value
+                                                            s kept at R0 and R1
+                                                            
+   22 00000012 BFA8 4601       MOVGE            R1,R0       ; Replace value at 
+                                                            R1 with R0 if R0 >=
+                                                             R1
+   23 00000016 F103 0301       ADD              R3,R3,#1    ; Increment counter
+                                                             register
+   24 0000001A 2B0A            CMP              R3, #10     ; Counter compare w
+                                                            ith max value i.e.,
+                                                             10
+   25 0000001C DBF6            BLT              CMPL        ; Loop back to CMPL
+                                                             if R3 is less than
+                                                             10
+   26 0000001E 6029            STR              R1,[R5]     ; Store max value i
+                                                            n Dest Address
+   27 00000020         LOOP
+   28 00000020 E7FE            B                LOOP
+   29 00000022 00 00 0000001E 
+              00000028 
+              FFFFFFEC 
+              FFFFFFE2 
+              00000032 
+              00000028 
+              0000000C 
+              0000007A 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              00000010 
+              FFFFFEB3 SRC     DCD              30, 40, -20, -30, 50, 40, 12, 1
+22, 16, -333
+   30 0000004C 00000000 
+              00000000         AREA             RES1, DATA, READWRITE
+   31 00000000 00000000 
+                       DST     DCD              0x00
+   32 00000004                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\ass_2_armv7t.d -o.\objects\ass_2_armv7t.o -I.\RTE\_Ta
+rget_1 -IP:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\
+STM32F4xx\Include -IP:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --
+predefine="__UVISION_VERSION SETA 525" --predefine="STM32F407xx SETA 1" --list=
+.\listings\ass_2_armv7t.lst Ass_2_ARMv7T.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CMPL 0000000C
+
+Symbol: CMPL
+   Definitions
+      At line 19 in file Ass_2_ARMv7T.s
+   Uses
+      At line 25 in file Ass_2_ARMv7T.s
+Comment: CMPL used once
+IN 00000000
+
+Symbol: IN
+   Definitions
+      At line 15 in file Ass_2_ARMv7T.s
+   Uses
+      None
+Comment: IN unused
+LOOP 00000020
+
+Symbol: LOOP
+   Definitions
+      At line 27 in file Ass_2_ARMv7T.s
+   Uses
+      At line 28 in file Ass_2_ARMv7T.s
+Comment: LOOP used once
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 13 in file Ass_2_ARMv7T.s
+   Uses
+      None
+Comment: RESET unused
+SRC 00000024
+
+Symbol: SRC
+   Definitions
+      At line 29 in file Ass_2_ARMv7T.s
+   Uses
+      At line 17 in file Ass_2_ARMv7T.s
+Comment: SRC used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 31 in file Ass_2_ARMv7T.s
+   Uses
+      At line 18 in file Ass_2_ARMv7T.s
+Comment: DST used once
+RES1 00000000
+
+Symbol: RES1
+   Definitions
+      At line 30 in file Ass_2_ARMv7T.s
+   Uses
+      None
+Comment: RES1 unused
+2 symbols
+343 symbols in table

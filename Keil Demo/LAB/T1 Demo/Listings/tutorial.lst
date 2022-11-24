@@ -1,0 +1,125 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ROM Data region declaration 
+    2 00000000                 AREA             RESET, CODE, READONLY ; Define 
+                                                            Code Section
+    3 00000000                 ENTRY                        ; Entry point of As
+                                                            sembler
+    4 00000000         START                                ; Start of code sec
+                                                            tion
+    5 00000000         ; A = B+C-D
+    6 00000000         ; Code  starts here
+    7 00000000 E59F6028        LDR              R6, =A      ; Load A to R6
+    8 00000004 E28F5018        ADR              R5,B        ; Load Address of B
+                                                             to R5
+    9 00000008 E4950004        LDR              R0,[R5],#4  ; [Reg] means point
+                                                             to the value at ad
+                                                            dress stored in Reg
+                                                            . De-refernece R5 a
+                                                            nd store in R0. Inc
+                                                            rement R5 by 4 byte
+                                                            s  
+   10 0000000C E4951004        LDR              R1,[R5],#4  ; De-refernece R5 a
+                                                            nd store in R2. 
+   11 00000010 E5952000        LDR              R2,[R5]     ; Load without incr
+                                                            ement
+   12 00000014 E0800001        ADD              R0,R0,R1    ; ADD R0 and R1 and
+                                                             store in R0
+   13 00000018 E0404002        SUB              R4,R0,R2    ; SUB R0 and R2 and
+                                                             store in R4
+   14 0000001C E5864000        STR              R4,[R6]     ; Store data locati
+                                                            on pointed by R6
+   15 00000020         loop
+   16 00000020 EAFFFFFE        b                loop        ; End Loop
+   17 00000024         STOP
+   18 00000024         ; Constant data declarations
+   19 00000024 11223344 
+              44559933 
+              00002233 B       DCD              0x11223344, 0x44559933, 0x00002
+233
+   20 00000030         ; RAM Data region declaration 
+   21 00000030 00000000        AREA             RES, DATA, READWRITE ; RES is a
+                                                             random lable repre
+                                                            senting RAM
+   22 00000000 00000000 
+              00000000 A       DCD              0x0, 0x0
+   23 00000008                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\tutorial.d -o.\objects\tutorial.o -IF:\Keil_v5\ARM\RV31\INC -IF:\Keil_v5
+\ARM\CMSIS\Include -IF:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --p
+redefine="__UVISION_VERSION SETA 525" --list=.\listings\tutorial.lst Tutorial.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+B 00000024
+
+Symbol: B
+   Definitions
+      At line 19 in file Tutorial.s
+   Uses
+      At line 8 in file Tutorial.s
+Comment: B used once
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file Tutorial.s
+   Uses
+      None
+Comment: RESET unused
+START 00000000
+
+Symbol: START
+   Definitions
+      At line 4 in file Tutorial.s
+   Uses
+      None
+Comment: START unused
+STOP 00000024
+
+Symbol: STOP
+   Definitions
+      At line 17 in file Tutorial.s
+   Uses
+      None
+Comment: STOP unused
+loop 00000020
+
+Symbol: loop
+   Definitions
+      At line 15 in file Tutorial.s
+   Uses
+      At line 16 in file Tutorial.s
+Comment: loop used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+A 00000000
+
+Symbol: A
+   Definitions
+      At line 22 in file Tutorial.s
+   Uses
+      At line 7 in file Tutorial.s
+Comment: A used once
+RES 00000000
+
+Symbol: RES
+   Definitions
+      At line 21 in file Tutorial.s
+   Uses
+      None
+Comment: RES unused
+2 symbols
+341 symbols in table

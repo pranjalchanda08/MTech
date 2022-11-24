@@ -1,0 +1,105 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;STM32F40IGX    
+    2 00000000                 AREA             RESET, CODE, READONLY
+    3 00000000                 THUMB                        ; Code with THUMB 2
+                                                             mode
+    4 00000000 20000100 
+              80000009 IN      DCD              0x20000100, 0x80000009 ; SP_sta
+                                                            rt : 0x20000000 Off
+                                                            set: 0x100, RESET V
+                                                            ector start at 0x80
+                                                            000009
+    5 00000008                 ENTRY
+    6 00000008 4C08            LDR              R4, =SRC
+    7 0000000A 4D09            LDR              R5, =DST
+    8 0000000C F854 0B04       LDR              R0,[R4],#4
+    9 00000010 F854 1B04       LDR              R1,[R4],#4
+   10 00000014 6822            LDR              R2,[R4]
+   11 00000016 4408            ADD              R0,R0,R1
+   12 00000018 EBA0 0002       SUB              R0,R0,R2
+   13 0000001C 6028            STR              R0,[R5]
+   14 0000001E         LOOP
+   15 0000001E E7FE            B                LOOP
+   16 00000020 30303030 
+              20202020 
+              40404040 SRC     DCD              0x30303030, 0x20202020, 0x40404
+040
+   17 0000002C 00000000 
+              00000000         AREA             RES1, DATA, READWRITE
+   18 00000000 00000000 
+                       DST     DCD              0x00
+   19 00000004                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --depend=.
+\objects\stm32f40igx.d -o.\objects\stm32f40igx.o -I.\RTE\_Target_1 -IF:\Keil_v5
+\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -
+IF:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISIO
+N_VERSION SETA 525" --predefine="STM32F407xx SETA 1" --list=.\listings\stm32f40
+igx.lst STM32F40IGX.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+IN 00000000
+
+Symbol: IN
+   Definitions
+      At line 4 in file STM32F40IGX.s
+   Uses
+      None
+Comment: IN unused
+LOOP 0000001E
+
+Symbol: LOOP
+   Definitions
+      At line 14 in file STM32F40IGX.s
+   Uses
+      At line 15 in file STM32F40IGX.s
+Comment: LOOP used once
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file STM32F40IGX.s
+   Uses
+      None
+Comment: RESET unused
+SRC 00000020
+
+Symbol: SRC
+   Definitions
+      At line 16 in file STM32F40IGX.s
+   Uses
+      At line 6 in file STM32F40IGX.s
+Comment: SRC used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 18 in file STM32F40IGX.s
+   Uses
+      At line 7 in file STM32F40IGX.s
+Comment: DST used once
+RES1 00000000
+
+Symbol: RES1
+   Definitions
+      At line 17 in file STM32F40IGX.s
+   Uses
+      None
+Comment: RES1 unused
+2 symbols
+342 symbols in table

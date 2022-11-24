@@ -1,0 +1,6 @@
+--cpu=Cortex-M4.fp
+".\objects\ass_2_armv7t.o"
+--strict --scatter ".\Objects\Ass_2_ARMv7T.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Ass_2_ARMv7T.map" -o .\Objects\Ass_2_ARMv7T.axf

@@ -1,0 +1,6 @@
+--cpu=Cortex-M4.fp
+".\objects\stm32f40igx.o"
+--strict --scatter ".\Objects\T1_stm32_demo.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\T1_stm32_demo.map" -o .\Objects\T1_stm32_demo.axf

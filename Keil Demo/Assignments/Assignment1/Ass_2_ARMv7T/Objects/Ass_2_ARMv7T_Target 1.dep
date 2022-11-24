@@ -1,0 +1,2 @@
+Dependencies for Project 'Ass_2_ARMv7T', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Ass_2_ARMv7T.s)(0x631470F6)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IP:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IP:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 525" --pd "STM32F407xx SETA 1"--list .\listings\ass_2_armv7t.lst --xref -o .\objects\ass_2_armv7t.o --depend .\objects\ass_2_armv7t.d)

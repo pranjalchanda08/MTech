@@ -1,0 +1,2 @@
+Dependencies for Project 'Ass_1a_ARMV4T', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Ass_1a_ARMV4T.s)(0x63135E9B)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IP:\Keil_v5\ARM\RV31\INC-IP:\Keil_v5\ARM\CMSIS\Include-IP:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 525"--list .\listings\ass_1a_armv4t.lst --xref -o .\objects\ass_1a_armv4t.o --depend .\objects\ass_1a_armv4t.d)

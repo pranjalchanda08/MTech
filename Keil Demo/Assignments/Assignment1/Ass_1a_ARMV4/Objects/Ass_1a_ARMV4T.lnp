@@ -1,0 +1,6 @@
+--cpu ARM7TDMI
+".\objects\ass_1a_armv4t.o"
+--strict --scatter ".\Objects\Ass_1a_ARMV4T.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Ass_1a_ARMV4T.map" -o .\Objects\Ass_1a_ARMV4T.axf

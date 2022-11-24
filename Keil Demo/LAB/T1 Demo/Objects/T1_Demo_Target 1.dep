@@ -1,0 +1,2 @@
+Dependencies for Project 'T1_Demo', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Tutorial.s)(0x62FE586E)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IF:\Keil_v5\ARM\RV31\INC-IF:\Keil_v5\ARM\CMSIS\Include-IF:\Keil_v5\ARM\INC\Philips--pd "__UVISION_VERSION SETA 525"--list .\listings\tutorial.lst --xref -o .\objects\tutorial.o --depend .\objects\tutorial.d)

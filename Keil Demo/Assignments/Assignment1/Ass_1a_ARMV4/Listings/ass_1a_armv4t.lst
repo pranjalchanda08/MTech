@@ -1,0 +1,185 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Assignment 1 a) Code 1
+    2 00000000         ; Controller: LPC2378
+    3 00000000         ; Architecture: ARMv4T
+    4 00000000         ; Assembly Language Programs (ALP) for an ARMv4T process
+                       or to implement the
+    5 00000000         ; following IF-ELSE statement are given below:
+    6 00000000         ; if ( a<b)
+    7 00000000         ; {
+    8 00000000         ;   x=5
+    9 00000000         ;   y=c+d
+   10 00000000         ; }
+   11 00000000         ; else
+   12 00000000         ;   y=c-d
+   13 00000000         
+   14 00000000                 AREA             RESET, CODE, READONLY
+   15 00000000                 ENTRY
+   16 00000000         START
+   17 00000000 E28F4048        ADR              R4,SRC      ; Get Address of SR
+                                                            C[0] in R4
+   18 00000004 E59F5054        LDR              R5,=DST     ; Load Address of D
+                                                            ST[0] in R5
+   19 00000008 EB000000        BL               SUB1        ; Branch to SUB1
+   20 0000000C         STOP
+   21 0000000C EAFFFFFE        B                STOP        ; Infinite loop
+   22 00000010         SUB1
+   23 00000010 E4940004        LDR              R0,[R4],#4  ; Load SRC[0]; Incr
+                                                            ement SRC address b
+                                                            y 4 => SRC[1]
+   24 00000014 E4941004        LDR              R1,[R4],#4  ; Load SRC[1]; Incr
+                                                            ement SRC address b
+                                                            y 4 => SRC[2]
+   25 00000018 E1500001        CMP              R0,R1       ; R0-R1, changes CP
+                                                            SR[N] value
+   26 0000001C AA000006        BGE              FB1         ; Branch if CPSR[N]
+                                                             = 1 due to CMP 
+   27 00000020 E4940004        LDR              R0,[R4],#4  ; if PC is here mea
+                                                            ns CPSR[N] = 0 ; Lo
+                                                            ad SRC[2]; Incremen
+                                                            t SRC address by 4 
+                                                            => SRC[3]
+   28 00000024 E4941004        LDR              R1,[R4],#4  ; Load SRC[3]; Incr
+                                                            ement SRC address b
+                                                            y 4 => SRC[4] (Garb
+                                                            age)
+   29 00000028 E0800001        ADD              R0,R0,R1    ; SRC[2] + SRC[3]; 
+                                                            Save to R0  
+   30 0000002C E3A02005        MOV              R2,#5       ; Copy 5 (Immidiate
+                                                            ) to R2
+   31 00000030 E4852004        STR              R2,[R5],#4  ; Store 5 at space 
+                                                            pointed by R5 i.e.,
+                                                             DST[0]; Increment 
+                                                            DST address by 4 =>
+                                                             DST[1]
+   32 00000034 E5850000        STR              R0,[R5]     ; Store R0 to DST[1
+                                                            ]
+   33 00000038 EA000003        B                AFT         ; Branch AFT
+   34 0000003C         FB1
+   35 0000003C E4940004        LDR              R0,[R4],#4  ; if PC is here mea
+                                                            ns CPSR[N] = 0 ; Lo
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            ad SRC[2]; Incremen
+                                                            t SRC address by 4 
+                                                            => SRC[3]
+   36 00000040 E5941000        LDR              R1,[R4]     ; Load SRC[3];
+   37 00000044 E0400001        SUB              R0,R0,R1    ; R0 = R0 - R1 => R
+                                                            0 = SRC[2]-SRC[3]
+   38 00000048 E5850004        STR              R0,[R5,#4]  ; Store result in R
+                                                            5 post incrementing
+                                                             value with 4 => at
+                                                             DST[1]
+   39 0000004C         AFT
+   40 0000004C E1A0F00E        MOV              PC,LR       ; Copy PC with LR (
+                                                            Return from branch)
+                                                            
+   41 00000050 00000020 
+              00000020 
+              00000030 
+              00000010 SRC     DCD              0x20, 0x20, 0x30, 0x10
+   42 00000060 00000000        AREA             RESULT, DATA, READWRITE
+   43 00000000 00000000 
+              00000000 DST     DCD              0, 0
+   44 00000008                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\ass_1a_armv4t.d -o.\objects\ass_1a_armv4t.o -IP:\Keil_v5\ARM\RV31\INC -I
+P:\Keil_v5\ARM\CMSIS\Include -IP:\Keil_v5\ARM\INC\Philips --predefine="__EVAL S
+ETA 1" --predefine="__UVISION_VERSION SETA 525" --list=.\listings\ass_1a_armv4t
+.lst Ass_1a_ARMV4T.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+AFT 0000004C
+
+Symbol: AFT
+   Definitions
+      At line 39 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 33 in file Ass_1a_ARMV4T.s
+Comment: AFT used once
+FB1 0000003C
+
+Symbol: FB1
+   Definitions
+      At line 34 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 26 in file Ass_1a_ARMV4T.s
+Comment: FB1 used once
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 14 in file Ass_1a_ARMV4T.s
+   Uses
+      None
+Comment: RESET unused
+SRC 00000050
+
+Symbol: SRC
+   Definitions
+      At line 41 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 17 in file Ass_1a_ARMV4T.s
+Comment: SRC used once
+START 00000000
+
+Symbol: START
+   Definitions
+      At line 16 in file Ass_1a_ARMV4T.s
+   Uses
+      None
+Comment: START unused
+STOP 0000000C
+
+Symbol: STOP
+   Definitions
+      At line 20 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 21 in file Ass_1a_ARMV4T.s
+Comment: STOP used once
+SUB1 00000010
+
+Symbol: SUB1
+   Definitions
+      At line 22 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 19 in file Ass_1a_ARMV4T.s
+Comment: SUB1 used once
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 43 in file Ass_1a_ARMV4T.s
+   Uses
+      At line 18 in file Ass_1a_ARMV4T.s
+Comment: DST used once
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 42 in file Ass_1a_ARMV4T.s
+   Uses
+      None
+Comment: RESULT unused
+2 symbols
+343 symbols in table
